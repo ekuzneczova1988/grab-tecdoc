@@ -65,5 +65,7 @@ class Modification(Base):
     volume = Column(Integer)
     type = Column(String(160))
     link = Column(String(160))
+    modelid = Column(Integer)
+    cardid = Column(Integer)
 
     last_update = Column(DateTime, default=datetime.datetime.now) 
