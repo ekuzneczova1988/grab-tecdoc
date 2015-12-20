@@ -12,16 +12,15 @@ from sqlalchemy import (Column, Integer, Text, String, ForeignKey,
 Base = declarative_base()
 
     
-class Item(Base):
-    __tablename__ = 'item'
+class Manufacture(Base):
+    __tablename__ = 'manufacture'
 
     sqlite_autoincrement = True
     id = Column(Integer, primary_key=True)
 
-    title = Column(String(160))
-    author = Column(String(160))
-    description = Column(String(255))
-    url = Column(String(160))
+    name = Column(String(160))
+    link = Column(String(160))
+    manid = Column(Integer)
 
     last_update = Column(DateTime, default=datetime.datetime.now)
 
