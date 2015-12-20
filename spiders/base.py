@@ -1,23 +1,56 @@
 # -*- coding: utf-8 -*-
 from grab.spider import Spider
 
-from models import Item
+from models import Manufacture, Model, BodyDictionary, Modification
 from config import Session, SAVE_TO_DB
 
 
 class BaseHubSpider(Spider):
-    initial_urls = ['http://github.com']
+    initial_urls = ['http://tecdoc.autodoc.ru']
 
     items_total = 0
 
-    def save(self, data):
+    def saveManufacture(self, data):
         if not SAVE_TO_DB:
             return
             
         session = Session()
 
-        if not session.query(Item).filter_by(title=data['title']).first():
-            obj = Item(**data)
+        if not session.query(Manufacture).filter_by(manid=data['manid']).first():
+            obj = Manufacture(**data)
+            session.add(obj)
+        session.commit()
+        
+    def saveModel(self, data):
+        if not SAVE_TO_DB:
+            return
+            
+        session = Session()
+
+        if not session.query(Model).filter_by(modelid=data['modelid']).first():
+            obj = Model(**data)
+            session.add(obj)
+        session.commit()
+        
+    def saveBodyDictionary(self, data):
+        if not SAVE_TO_DB:
+            return
+            
+        session = Session()
+
+        if not (session.query(BodyDictionary).filter_by(name=data['name']).first()&session.query(BodyDictionary).filter_by(modelid=data['modelid']).first()):
+            obj = BodyDictionary(**data)
+            session.add(obj)
+        session.commit()
+        
+    def saveModification(self, data):
+        if not SAVE_TO_DB:
+            return
+            
+        session = Session()
+
+        if not session.query(Modification).filter_by(cardid=data['cardid']).first():
+            obj = Modification(**data)
             session.add(obj)
         session.commit()
 
