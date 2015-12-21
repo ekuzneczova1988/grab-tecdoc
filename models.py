@@ -59,7 +59,6 @@ class Modification(Base):
 
     name = Column(String(160))
     productionyear = Column(String(160))
-    modelid = Column(Integer)
     kw = Column(Integer)
     hp = Column(Integer)
     volume = Column(Integer)

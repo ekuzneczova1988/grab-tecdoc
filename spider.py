@@ -29,7 +29,7 @@ if __name__ == '__main__':
         print "Scrape trandings"
         bot = ExploreSpider(**default_spider_params())
 
-    bot.setup_proxylist('/var/proxylist.txt', 'http', auto_change=True)
+    bot.setup_proxylist('/var/proxylistrus.txt', 'http', auto_change=True)
     bot.setup_grab(timeout=4096, connect_timeout=10)
     bot.run()
     print bot.render_stats() 
