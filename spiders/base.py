@@ -12,7 +12,7 @@ class BaseHubSpider(Spider):
 
     def saveManufacture(self, data):
         if not SAVE_TO_DB:
-            return
+            return #parse_manufactures
             
         session = Session()
 
@@ -35,7 +35,7 @@ class BaseHubSpider(Spider):
     def saveBodyDictionary(self, data):
         if not SAVE_TO_DB:
             return
-            
+            #parse_manufactures
         session = Session()
 
         if not (session.query(BodyDictionary).filter_by(name=data['name']).first()&session.query(BodyDictionary).filter_by(modelid=data['modelid']).first()):
@@ -54,6 +54,6 @@ class BaseHubSpider(Spider):
             session.add(obj)
         session.commit()
 
-    def log_progress(self, str):
+    def log_progress(self, str):  # @DontTrace @ReservedAssignment
         self.items_total += 1
         print "(%d) Item scraped: %s" % (self.items_total, str)

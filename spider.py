@@ -6,7 +6,7 @@ from optparse import OptionParser
 
 from grab import Grab
 from grab.spider import Spider, Task
-from grab.tools.logs import default_logging
+from weblib.logs import default_logging
 
 from spiders.explore import ExploreSpider
 from spiders.lang_python import LangPythonSpider
@@ -18,18 +18,18 @@ if __name__ == '__main__':
 
     # command line options
     parser.add_option("-p", "--python", action="store_true",
-                      dest="parse_python", default=False)
+                      dest="parse_manufactures", default=False)
 
     options, args = parser.parse_args()
     
-    if options.parse_python:
+    if options.parse_manufactures:
         print "Scape python projects"
         bot = LangPythonSpider(**default_spider_params())
     else:
         print "Scrape trandings"
         bot = ExploreSpider(**default_spider_params())
 
-    bot.setup_proxylist('/var/proxylistrus.txt', 'http', auto_change=True)
-    bot.setup_grab(timeout=4096, connect_timeout=10)
+    bot.load_proxylist('/var/proxylistrus.txt',  "text_file", "http")
+    bot.create_grab_instance(timeout=4096, connect_timeout=10)
     bot.run()
     print bot.render_stats() 

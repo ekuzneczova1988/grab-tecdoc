@@ -16,7 +16,7 @@ CACHE_DB = 'default_project'
 def init_engine():
     db_engine = create_engine(
         'sqlite+pysqlite:///data.sqlite', encoding='utf-8')
-    Base.metadata.create_all(db_engine)
+    Base.metadata.create_all(db_engine)  # @UndefinedVariable
     return db_engine
 
     
@@ -30,12 +30,12 @@ def default_spider_params():
         'network_try_limit': 20,
         'task_try_limit': 20,
     }
-    if USE_CACHE:
+    """if USE_CACHE:
         params.update({
             'thread_number': 3,
             'use_cache': USE_CACHE,
             'cache_db': CACHE_DB,
             'debug_error' :True,
-        })
+        })"""
         
     return params

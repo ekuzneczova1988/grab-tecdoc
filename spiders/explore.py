@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
-"""
-Crawl trendings from http://github.com/explore
-"""
 from grab.spider import Spider
 
 from spiders.base import BaseHubSpider
-
 
 class ExploreSpider(BaseHubSpider):
     initial_urls = ['http://github.com/explore']
 
     def task_initial(self, grab, task):
-        repos = grab.xpath_list('//ol[@class="ranked-repositories"]/li')
+        repos = grab.xpath_list(
+            '//ol[@class="ranked-repositories"]/li')
         for repo in repos[:5]:
             data = {
                 'author': repo.xpath('./h3/a[1]/text()')[0],
