@@ -5,7 +5,7 @@ from spiders.base import BaseHubSpider
 
 import re
 
-class ExploreSpider(BaseHubSpider):
+class ManufactureSpider(BaseHubSpider):
     
     def task_initial(self, grab, task):
         repos = grab.doc.select(
