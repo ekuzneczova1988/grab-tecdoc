@@ -4,13 +4,10 @@ Github projects spy
 """
 from optparse import OptionParser
 
-from grab import Grab
-from grab.spider import Spider, Task
 from weblib.logs import default_logging
 
 from spiders.explore import ExploreSpider
-from spiders.lang_python import LangPythonSpider
-from config import default_spider_params, Session
+from config import default_spider_params
 
 if __name__ == '__main__':
     default_logging()
@@ -22,14 +19,10 @@ if __name__ == '__main__':
 
     options, args = parser.parse_args()
     
-    if options.parse_manufactures:
-        print "Scape python projects"
-        bot = LangPythonSpider(**default_spider_params())
-    else:
-        print "Scrape trandings"
-        bot = ExploreSpider(**default_spider_params())
+    print "Scrape main"
+    bot = ExploreSpider(**default_spider_params())
 
     bot.load_proxylist('/var/proxylistrus.txt',  "text_file", "http")
     bot.create_grab_instance(timeout=4096, connect_timeout=10)
     bot.run()
-    print bot.render_stats() 
+    #print bot.render_stats() 
