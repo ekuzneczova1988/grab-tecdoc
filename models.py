@@ -36,7 +36,7 @@ class Model(Base):
     startman = Column(String(100))
     stopman = Column(String(100))
     modelid = Column(Integer)
-    manid = Column(Integer)
+    modelmanid = Column(Integer)
 
     last_update = Column(DateTime, default=datetime.datetime.now)
     

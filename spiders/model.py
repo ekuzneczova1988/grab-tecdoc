@@ -19,7 +19,7 @@ class ModelSpider(BaseHubSpider):
                 'modelid': p.match(repo.select(".//td/a/@href").text()).group(2),
                 'startman': repo.select(".//td")[1].text() ,
                 'stopman': repo.select(".//td")[2].text() ,
-                'manid': p.match(repo.select(".//td/a/@href").text()).group(2),
+                'modelmanid': p.match(repo.select(".//td/a/@href").text()).group(2),
             } 
 
             self.saveModel(data)
