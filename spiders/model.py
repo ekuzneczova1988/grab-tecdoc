@@ -10,15 +10,16 @@ class ModelSpider(BaseHubSpider):
     def task_initial(self, grab, task):
         repos = grab.doc.select(
             '//tbody/tr') 
-        p = re.compile('modification\.php\?manufacture=\d*&model=(\d*)')
+        p = re.compile('modification\.php\?manufacture=(\d*)&model=(\d*)')
         for repo in repos:
             q = p.match(repo.select(".//@href").text()).group(1) # @UnusedVariable
             data = {
                 'name': repo.select(".//td")[0].text() ,
                 'link': repo.select(".//td/a/@href").text(),
-                'modelid': p.match(repo.select(".//td/a/@href").text()).group(1),
+                'modelid': p.match(repo.select(".//td/a/@href").text()).group(2),
                 'startman': repo.select(".//td")[1].text() ,
                 'stopman': repo.select(".//td")[2].text() ,
+                'manid': p.match(repo.select(".//td/a/@href").text()).group(2),
             } 
 
             self.saveModel(data)
