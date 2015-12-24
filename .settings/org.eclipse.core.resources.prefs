@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//generators/__init__.py=utf-8
 encoding//generators/config.py=utf-8
 encoding//spiders/base.py=utf-8
 encoding//spiders/manufacture.py=utf-8

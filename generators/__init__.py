@@ -1,9 +1,21 @@
+# -*- coding: utf-8 -*-
 from generators.bdnormilize import getManufactures, getModels, updateModel,\
     getModelsAll
 import re
 
+
 def dbBodyNameParse():
-    for manufacture in getManufactures()
+    for manufacture in getManufactures():
+        for model in getModels(manufacture.manid):
+            p = re.compile('.*\((.*)\).*')
+            try:
+                parsedbodyid = p.match(model.name).group(1)
+                tempid = model.modelid
+                model.bodyid = parsedbodyid
+                updateModel(tempid, model)
+                print (model.name, model.bodyid)
+            except:
+                print (model.name)
         
 
 def dbModelmanidParse():
@@ -19,4 +31,5 @@ def dbModelmanidParse():
         updateModel(tempid, model)
         i = i + 1
         print "{0}/{1}".format(countall,i)
-        
+
+dbBodyNameParse()

@@ -26,6 +26,7 @@ def updateModel(model, update):
         try:
             tempmodel = session.query(Model).filter_by(modelid=model).first()
             tempmodel.modelmanid = update.modelmanid
+            tempmodel.bodyid = update.bodyid
             session.commit()
             print "Commit ok {0}".format(model)
         except:
